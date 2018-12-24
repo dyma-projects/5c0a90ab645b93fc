@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from "../shared/services/user.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-user-list',
@@ -6,14 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-  public users: string[];
+  public users$: Observable<string[]>;
 
   constructor(
-    // il faut probablement injecter un service ici !
-  ) { }
+   private userService: UserService
+  ) {
+    this.users$ = this.userService.users;
+  }
 
   ngOnInit() {
-    // il faut initialiser les users ici avec le service
+
+
   }
 
 }
